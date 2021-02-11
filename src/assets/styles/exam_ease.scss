@@ -1,0 +1,21 @@
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap');
+
+@import "./utils/variables";
+@import "./utils/app";
+
+// Materialize
+@import "./materialize/materialize";
+
+// Components
+@import "./components/oncard";
+@import "./components/navbar";
+@import "./components/logo";
+@import "./components/tabbar";
+@import "./components/card";
+@import "./components/subjectcard";
+@import "./components/button";
+
+// Views
+@import "./views/onboarding";
+@import "./views/examselect";

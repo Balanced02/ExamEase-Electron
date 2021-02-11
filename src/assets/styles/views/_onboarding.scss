@@ -1,0 +1,40 @@
+.onboarding {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 20px 10px;
+  .row {
+    align-items: center;
+    justify-content: center;
+  }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin: auto;
+  }
+  .img-container {
+    align-items: center;
+    justify-content: center;
+  }
+  .bottom-img {
+    margin-bottom: -10px;
+    img.outside {
+      width: 120%;
+      margin-left: -60px;
+    }
+  }
+  .welcome {
+    padding-top: 10px;
+    .heading {
+      font-size: 1.5em;
+      font-weight: 400;
+    }
+    .body {
+      font-weight: 200;
+      font-style: 0.8em;
+    }
+  }
+}

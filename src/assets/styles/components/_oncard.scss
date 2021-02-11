@@ -1,0 +1,20 @@
+.oncard {
+  text-align: justify;
+  font-weight: 400;
+  font-size: 0.8em;
+  :hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #fafafa;
+    box-shadow: 0px 27.88px 127px -25px rgba(0, 0, 0, 0.27);
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 360px;
+    max-width: 250px;
+  }
+}

@@ -1,0 +1,35 @@
+.navbar {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .back-button {
+    border: none;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: $background-dark;
+  }
+  .title {
+    padding: 0px 20px;
+    flex: 1;
+    h5 {
+      display: inline-block;
+      padding-bottom: 5px;
+      position: relative;
+      font-weight: 400;
+    }
+    h5:before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 1px;
+      bottom: 0;
+      left: 5%;
+      border-bottom: 2px solid $black;
+    }
+  }
+}
