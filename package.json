@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "./public/main.js",
+  "main": "public/electron.js",
+  "description": "Practice CBT questions from JAMB and WASSCE",
+  "author": {
+    "email": "adebalanced02@gmail.com",
+    "name": "Daniel Adepoju",
+    "url": "http://examease.com.ng/"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "concurrently": "^5.3.0",
-    "electron": "^11.2.3",
-    "electron-builder": "^22.9.1",
     "electron-is-dev": "^1.2.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
@@ -20,12 +25,17 @@
     "wait-on": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
+  "devDependencies": {
+    "electron": "^11.2.3",
+    "electron-builder": "^22.9.1"
+  },
   "scripts": {
     "dev": "concurrently \"react-scripts start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build": "react-scripts build",
+    "electron-build": "electron-builder",
+    "build": "react-scripts build && npm run electron-build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ebuild": "npm run build && node_modules/.bin/build"
+    "postinstall": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": [

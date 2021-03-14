@@ -1,6 +1,18 @@
 .exam-select {
+  .instructions {
+    font-size: 12px;
+    .timer {
+      float: right;
+      display: flex;
+      align-items: center;
+      p {
+        margin-right: 10px;
+      }
+    }
+  }
   .description {
-    font-weight: 200;
+    font-weight: 300;
+    text-align: justify;
   }
   .card {
     padding: 10px 20px 80px 20px;

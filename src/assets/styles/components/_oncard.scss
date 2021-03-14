@@ -2,7 +2,7 @@
   text-align: justify;
   font-weight: 400;
   font-size: 0.8em;
-  :hover {
+  &:hover {
     transform: scale(1.1);
     transition: all 0.2s ease-in;
   }

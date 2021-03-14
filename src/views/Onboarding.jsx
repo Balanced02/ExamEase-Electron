@@ -5,19 +5,26 @@ import Saly from "../assets/images/saly.png";
 import Saly2 from "../assets/images/saly_2.png";
 import Saly3 from "../assets/images/saly_3.png";
 import Button from "../components/Button";
+import useFetchAllQuestions from "../utils/useFetchAllQuestions";
+import { useEffect } from "react";
 
 export default function Onboarding() {
   const history = useHistory()
+  const { fetchAllQuestions } = useFetchAllQuestions()
 
   const getStarted = () => {
     history.push('/app/selection')
   }
 
+  useEffect(() => [
+    fetchAllQuestions()
+  ], [])
+
   return (
     <div className="onboarding">
       <div className="container">
         <div className="row">
-          <Card className="col m4 l3">
+          <Card className="col m4">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
               nisi velit. Lorem ipsum dolor sit amet,
@@ -26,7 +33,7 @@ export default function Onboarding() {
               <img src={Saly} alt="boy reading" srcset="" />
             </div>
           </Card>
-          <Card className="col m4 l3">
+          <Card className="col m4">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
               nisi velit.
@@ -35,7 +42,7 @@ export default function Onboarding() {
               <img src={Saly2} className="outside" alt="boy reading" srcset="" />
             </div>
           </Card>
-          <Card className="col m4 l3">
+          <Card className="col m4">
             <div className="bottom-img img-container">
               <img src={Saly3} alt="boy reading" srcset="" />
             </div>

@@ -1,13 +1,13 @@
 import { Switch, Route } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import ExamSelection from "../views/ExamSelection";
+import TakeExam from "../views/TakeExam";
 
 export default function AppLayout() {
   return (
     <div>
-      <Navbar title="Exam preparations" />
       <Switch>
-        <Route path="/app/selection" component={ExamSelection} />
+        <Route exact path="/app/selection" component={ExamSelection} />
+        <Route exact path="/app/take-exam" component={TakeExam} />
       </Switch>
     </div>
   );
