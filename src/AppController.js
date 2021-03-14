@@ -5,11 +5,13 @@ const getLocalState = () => {
 };
 
 export let initialState = {
+  examType: null,
+  subjectList: null,
 };
 
 const useController = () => {
   const persistState = (newState) => {
-    localStorage.setItem("@examEaseWeb", JSON.stringify(newState))
+    localStorage.setItem("@examEaseWeb", JSON.stringify(newState));
   };
 
   const [state, dispatch] = React.useReducer((state, value) => {

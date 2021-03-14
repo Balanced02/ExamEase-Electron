@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TimeSvg from "../assets/svgs/TimeSvg";
 import Button from "../components/Button";
 import Card from "../components/Card";
+import Navbar from "../components/Navbar";
 import SubjectCard from "../components/SubjectCard";
 import TabBar from "../components/TabBar";
 import examTypes from "../utils/examTypes";
+import { useHistory } from "react-router-dom";
+import useAlert from "../utils/useAlert";
+import AppContext from "../AppContext";
 
 const instructions = {
   WAEC: [
@@ -21,9 +25,9 @@ const instructions = {
       ],
     },
     {
-      title: "Use a Jotter",
+      title: "Use the rough sheet",
       body: [
-        "You need a jotter to make a note and put down your thoughts. Noting down areas of difficulties and finding someone capable to help you shows your seriousness.",
+        "Make use of the rough sheet to make note and put down your thoughts.",
       ],
     },
   ],
@@ -33,6 +37,24 @@ export default function ExamSelection() {
   const [currentIndex, onTabChanged] = useState(0);
   const [subjects, setSubjects] = useState([]);
 
+  const { dispatch } = useContext(AppContext);
+
+  const { showAlert } = useAlert();
+
+  const history = useHistory();
+
+  const takeExam = () => {
+    let selectedSubjects = subjects.filter((sub) => sub);
+    if (!selectedSubjects.length) {
+      return showAlert("error", "Please select at least one subject");
+    }
+    dispatch({
+      subjectList: selectedSubjects,
+      examType: examTypes[currentIndex],
+    });
+    history.push("/app/take-exam");
+  };
+
   const handleSelectedSubject = (sub, i) => {
     let newSubjects = [...subjects];
     newSubjects[i] = sub;
@@ -40,62 +62,65 @@ export default function ExamSelection() {
   };
 
   return (
-    <div className="content exam-select">
-      <div className="row">
-        <div className="col m7">
-          <TabBar
-            tabs={examTypes.map((exam) => exam.name)}
-            currentIndex={currentIndex}
-            onTabChanged={(i) => {
-              onTabChanged(i)
-              setSubjects([])
-            }}
-          />
-          <div>
-            <p className="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec
-              nisi velit. Nulla eleifend blandit nibh, non aliquet purus
-              scelerisque eleifend. Curabitur dictum, urna
-            </p>
-            <div className="row">
-              {Array.apply(null, Array(4)).map((_, index) => (
-                <div className="col" key={index}>
-                  <SubjectCard
-                    selectedSubject={subjects[index]}
-                    onSelectSubject={(subject) =>
-                      handleSelectedSubject(subject, index)
-                    }
-                    disabled={subjects.map((sub) => sub?.value)}
-                    selectedExam={examTypes[currentIndex].value}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="col m5">
-          <Card className="instructions">
-            <div className="timer">
-              <p>2hrs 30mins</p>
-              <TimeSvg />
-            </div>
-            <h6>Standing instrucations</h6>
-            {instructions.WAEC.map((int, i) => (
-              <div key={i}>
-                <p>
-                  <strong>{i + 1}.</strong> {int.title}
-                </p>
-                {int.body.map((bod, k) => (
-                  <p className="description" key={`${i}-${k}`}>
-                    {bod}
-                  </p>
+    <div>
+      <Navbar title="Exam preparations" />
+      <div className="content exam-select">
+        <div className="row">
+          <div className="col m7">
+            <TabBar
+              tabs={examTypes.map((exam) => exam.name)}
+              currentIndex={currentIndex}
+              onTabChanged={(i) => {
+                onTabChanged(i);
+                setSubjects([]);
+              }}
+            />
+            <div>
+              <p className="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                nec nisi velit. Nulla eleifend blandit nibh, non aliquet purus
+                scelerisque eleifend. Curabitur dictum, urna
+              </p>
+              <div className="row">
+                {Array.apply(null, Array(4)).map((_, index) => (
+                  <div className="col" key={index}>
+                    <SubjectCard
+                      selectedSubject={subjects[index]}
+                      onSelectSubject={(subject) =>
+                        handleSelectedSubject(subject, index)
+                      }
+                      disabled={subjects.map((sub) => sub?.value)}
+                      selectedExam={examTypes[currentIndex].value}
+                    />
+                  </div>
                 ))}
               </div>
-            ))}
-            <div className="right">
-              <Button>Let's get started</Button>
             </div>
-          </Card>
+          </div>
+          <div className="col m5">
+            <Card className="instructions">
+              <div className="timer">
+                <p>2hrs 30mins</p>
+                <TimeSvg />
+              </div>
+              <h6>Standing instrucations</h6>
+              {instructions.WAEC.map((int, i) => (
+                <div key={i}>
+                  <p>
+                    <strong>{i + 1}.</strong> {int.title}
+                  </p>
+                  {int.body.map((bod, k) => (
+                    <p className="description" key={`${i}-${k}`}>
+                      {bod}
+                    </p>
+                  ))}
+                </div>
+              ))}
+              <div className="right">
+                <Button onClick={takeExam}>Let's get started</Button>
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

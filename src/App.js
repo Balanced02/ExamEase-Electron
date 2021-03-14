@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import AppContext from "./AppContext";
 import useController from "./AppController";
+import Alert from "./components/Alert";
 
 const { Provider } = AppContext;
 
@@ -18,6 +19,7 @@ function App() {
     >
       <Router>
         <div className="app">
+          {state.alert && <Alert {...state.alert} />}
           <Switch>
             <Route path="/app" component={AppLayout} />
             <Route path="/" component={Onboarding} />
