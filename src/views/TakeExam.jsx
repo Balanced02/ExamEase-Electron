@@ -40,7 +40,7 @@ export default function TakeExam() {
     <div className="take-exam">
       <Navbar title={`${subjectList[currentSubject]?.name}`} />
       <div className="row">
-        <div className="col m7">
+        <div className="col m8">
           <div className="content">
             <div className="question-card">
               {currentQuestion.section && (
