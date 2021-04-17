@@ -26,4 +26,21 @@
       }
     }
   }
+  .question-index {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid $black;
+    cursor: pointer;
+    background-color: transparent;
+    color: $black;
+  }
+  .question-index.selected {
+    background-color: $primary;
+    color: $white;
+    border: 1px solid $primary;
+  }
 }

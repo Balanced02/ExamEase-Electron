@@ -11,14 +11,15 @@ const useFetchAllQuestions = () => {
     for (let i = 0; i < examTypes.length; i++) {
       for (let j = 0; j < subjectList.length; j++) {
         let key = `${examTypes[i].value}-${subjectList[j].value}`;
-        callApi(`subject=${subjectList[j].value}&type=${examTypes[i].value}`)
-          .then((data) => {
-            if (data?.data?.length) {
-              dispatch({
-                [key]: data,
-              });
-            }
-          })
+        callApi(
+          `subject=${subjectList[j].value}&type=${examTypes[i].value}`
+        ).then((data) => {
+          if (data?.data?.length) {
+            dispatch({
+              [key]: data,
+            });
+          }
+        });
       }
     }
   };

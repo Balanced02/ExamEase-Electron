@@ -36,6 +36,7 @@ const instructions = {
 export default function ExamSelection() {
   const [currentIndex, onTabChanged] = useState(0);
   const [subjects, setSubjects] = useState([]);
+  const [fullName, setFullName] = useState("");
 
   const { dispatch } = useContext(AppContext);
 
@@ -48,9 +49,13 @@ export default function ExamSelection() {
     if (!selectedSubjects.length) {
       return showAlert("error", "Please select at least one subject");
     }
+    if (!fullName) {
+      return showAlert("error", "Please provide your name");
+    }
     dispatch({
       subjectList: selectedSubjects,
       examType: examTypes[currentIndex],
+      fullName,
     });
     history.push("/app/take-exam");
   };
@@ -76,11 +81,19 @@ export default function ExamSelection() {
               }}
             />
             <div>
-              <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                nec nisi velit. Nulla eleifend blandit nibh, non aliquet purus
-                scelerisque eleifend. Curabitur dictum, urna
-              </p>
+              <div className="col m5">
+                <label htmlFor="fullName">
+                  Full Name:
+                  <input
+                    id="fullName"
+                    type="text"
+                    placeholder="Full Name"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div className="clearfix" />
               <div className="row">
                 {Array.apply(null, Array(4)).map((_, index) => (
                   <div className="col" key={index}>
