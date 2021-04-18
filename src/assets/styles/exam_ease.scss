@@ -1,5 +1,5 @@
 // fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&display=swap");
 
 @import "./utils/variables";
 @import "./utils/app";
@@ -16,6 +16,7 @@
 @import "./components/subjectcard";
 @import "./components/button";
 @import "./components/alert";
+@import "./components/progressbar";
 
 // Views
 @import "./views/onboarding";

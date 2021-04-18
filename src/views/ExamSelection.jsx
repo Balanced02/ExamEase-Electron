@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TimeSvg from "../assets/svgs/TimeSvg";
 import Button from "../components/Button";
 import Card from "../components/Card";
@@ -36,9 +36,9 @@ const instructions = {
 export default function ExamSelection() {
   const [currentIndex, onTabChanged] = useState(0);
   const [subjects, setSubjects] = useState([]);
-  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
 
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, fullName } = useContext(AppContext);
 
   const { showAlert } = useAlert();
 
@@ -49,16 +49,22 @@ export default function ExamSelection() {
     if (!selectedSubjects.length) {
       return showAlert("error", "Please select at least one subject");
     }
-    if (!fullName) {
+    if (!userName) {
       return showAlert("error", "Please provide your name");
     }
     dispatch({
       subjectList: selectedSubjects,
       examType: examTypes[currentIndex],
-      fullName,
+      fullName: userName,
     });
     history.push("/app/take-exam");
   };
+
+  useEffect(() => {
+    if (fullName) {
+      setUserName(fullName);
+    }
+  }, []);
 
   const handleSelectedSubject = (sub, i) => {
     let newSubjects = [...subjects];
@@ -88,8 +94,8 @@ export default function ExamSelection() {
                     id="fullName"
                     type="text"
                     placeholder="Full Name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                 </label>
               </div>

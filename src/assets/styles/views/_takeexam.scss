@@ -43,4 +43,24 @@
     color: $white;
     border: 1px solid $primary;
   }
+  .progres-bar-container {
+    display: flex;
+    justify-content: center;
+  }
+  .right-panel.row,
+  .right-panel.col {
+    padding: 0px !important;
+  }
+  .right-panel {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    .items {
+      padding: 0px 5px;
+      border-bottom: 1px solid $gray;
+      p {
+        margin: 0px !important;
+        color: $gray;
+      }
+    }
+  }
 }
